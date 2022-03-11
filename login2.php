@@ -4,7 +4,7 @@
         <title>Login</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="images/logo.ico" type="image/png" />
     </head>
 
