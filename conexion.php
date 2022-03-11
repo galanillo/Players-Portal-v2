@@ -10,11 +10,11 @@
         $contra= $_POST["password"];
 
 
-        $query="SELECT id, email FROM usuarios WHERE email = '".$nombre."' and password ='".$contra."';";    
+        $query="SELECT nick, email FROM usuarios WHERE email = '".$nombre."' and passwd ='".$contra."';";    
         $query=mysqli_query($myconn,$query);
         
         $mostrar=mysqli_fetch_array($query);
-        $user=$mostrar['id'];
+        $user=$mostrar['nick'];
         
         $nr= mysqli_num_rows($query);
 

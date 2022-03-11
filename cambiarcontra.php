@@ -14,7 +14,7 @@
             <h2>Cambiar contraseña</h2>
             
              <form class="box" action="index.php" method="post">
-           <input type="text" name="nick_1" placeholder="Nombre de usuario">
+           <input type="email" name="email" placeholder="Email">
             <input type="password" name="password_1" placeholder="Nueva contraseña">
             <input type="password" name="passconf_1" placeholder="Confirmar contraseña">
     

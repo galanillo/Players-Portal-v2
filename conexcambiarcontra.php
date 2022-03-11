@@ -6,13 +6,13 @@
         echo "Error en la conexión a BBDD<br>"; 
     }else{
 
-        $nombre= $_POST["nick_1"];
+        $mail= $_POST["email"];
         $contra= $_POST["password_1"];
         $conf = $_POST["passconf_1"];
         
         echo $nombre;
 
-        $query="UPDATE usuarios SET passwd = '".$contra."' WHERE email = '".$nombre."'"; //revisar email ese
+        $query="UPDATE usuarios SET passwd = '".$contra."' WHERE email = '".$mail."'"; //revisar email ese
         $query=mysqli_query($myconn,$query);
 
         echo $result['pass'];
