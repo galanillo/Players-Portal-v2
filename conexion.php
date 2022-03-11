@@ -24,7 +24,7 @@
             $_SESSION['idusuario']="$user";
             $uri = 'http://';
             $uri .= $_SERVER['HTTP_HOST'];
-            header('Location: '.$uri.'/Players-Portal-v2/index.php');
+            header('Location: '.$uri.'/Players-Portal-v2/index.html');
             exit;
         } else if($nr == 0){
             $uri = 'http://';
