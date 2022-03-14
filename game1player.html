@@ -11,9 +11,9 @@
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/style_juego.css" rel="stylesheet" />
     </head>
-    <body class="d-flex flex-column">
+    <body class="d-flex flex-column" onload="Solitaire.start()" onresize="Dimension.calculateAll(Solitaire.getGameType())"">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -45,6 +45,23 @@
                         <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">Titulo del juego</h2>
+                            <script src="src/main/data-structures/Vector2.js"></script>
+                            <script src="src/main/Utils.js"></script>
+                            <script src="src/main/Assets.js"></script>
+                            <script src="src/main/EventListener.js"></script>
+                            <script src="src/main/Canvas.js"></script>
+                            <script src="src/main/data-structures/GameNode.js"></script>
+                            <script src="src/main/data-structures/GameStack.js"></script>
+                            <script src="src/main/data-structures/Dimension.js"></script>
+                            <script src="src/main/Game.js"></script>
+                            <script src="src/main/GameWorld.js"></script>
+                            <script src="src/main/Card.js"></script>
+                            <script src="src/main/data-structures/Stack.js"></script>
+                            <script src="src/main/data-structures/PyramidStack.js"></script>
+                            <script src="src/main/games/Klondike.js"></script>
+                            <script src="src/main/games/Spider.js"></script>
+                            <script src="src/main/games/Freecell.js"></script>
+                            <script src="src/main/games/Pyramid.js"></script>
                             <p class="lead fw-normal text-muted mb-0"> Descripción</p>
                         </div>
                     </div>
