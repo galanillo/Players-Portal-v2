@@ -1,6 +1,6 @@
 function Game() {
     this.scene = SCENES.MENU;
-    this.menuButtons = ["Klondike", "Spider", "Freecell", "Pyramid"];
+    this.menuButtons = ["Jugar ya","Salir"];
 }
 
 const SCENES = {
@@ -11,10 +11,7 @@ const SCENES = {
 }
 
 const GAMES = {
-    KLONDIKE: 'klondike',
-    FREECELL: 'freecell',
-    SPIDER: 'spider',
-    PYRAMID: 'pyramid'
+    SPIDER: 'spider'
 }
 
 const FPS = 60;
@@ -34,28 +31,12 @@ Game.prototype.init = function () {
 }
 
 Game.prototype.newGame = function (type) {
-    if (type == GAMES.KLONDIKE) {
-        Solitaire.gameWorld = new Klondike();
-    } else if (type == GAMES.SPIDER) {
         Solitaire.gameWorld = new Spider();
-    } else if (type == GAMES.FREECELL) {
-        Solitaire.gameWorld = new Freecell();
-    } else if (type == GAMES.PYRAMID) {
-        Solitaire.gameWorld = new Pyramid();
-    }
     Dimension.calculateAll(type);
 }
 
 Game.prototype.getGameType = function () {
-    if (Solitaire.gameWorld instanceof Klondike)
-        return GAMES.KLONDIKE;
-    else if (Solitaire.gameWorld instanceof Spider)
         return GAMES.SPIDER;
-    else if (Solitaire.gameWorld instanceof Freecell)
-        return GAMES.FREECELL;
-    else if (Solitaire.gameWorld instanceof Pyramid)
-        return GAMES.PYRAMID;
-    return null;
 }
 
 Game.prototype.mainLoop = function () {
@@ -81,12 +62,12 @@ Game.prototype.mainLoop = function () {
 Game.prototype.render = function (scene) {
     if (scene == SCENES.LOADING) {
         Canvas.fill(COLORS.BACKGROUND.DARK_GREEN);
-        Canvas.drawText("Loading", new Vector2(Canvas.width / 2, Canvas.height / 2), Canvas.width / 15, COLORS.BACKGROUND.LIGHT_GRAY, TEXT_ALIGN.VERTICAL.CENTER, TEXT_ALIGN.HORIZONTAL.BOTTOM);
+        Canvas.drawText("Cargando", new Vector2(Canvas.width / 2, Canvas.height / 2), Canvas.width / 15, COLORS.BACKGROUND.LIGHT_GRAY, TEXT_ALIGN.VERTICAL.CENTER, TEXT_ALIGN.HORIZONTAL.BOTTOM);
         Canvas.drawRect(new Vector2(Canvas.width / 3, Canvas.height * 0.55), Canvas.width / 3, Canvas.height / 15, COLORS.BACKGROUND.BLACK);
         Canvas.drawRect(new Vector2(Canvas.width / 3, Canvas.height * 0.55), (loading / maxLoading) * Canvas.width / 3, Canvas.height / 15, COLORS.BACKGROUND.LIGHT_GREEN);
     } else if (scene == SCENES.MENU) {
         Canvas.fill(COLORS.BACKGROUND.DARK_GREEN);
-        Canvas.drawText("Solitaire", new Vector2(Canvas.width / 2, Canvas.height / 4), Canvas.width / 8, COLORS.BACKGROUND.LIGHT_GRAY);
+        Canvas.drawText("SPIDER", new Vector2(Canvas.width / 2, Canvas.height / 4), Canvas.width / 8, COLORS.BACKGROUND.LIGHT_GRAY);
         var totalButtonWidth = 0;
         var pixelSize = Canvas.width / 15;
         Solitaire.menuButtons.forEach(element => totalButtonWidth += Canvas.textWidth(element, pixelSize));
