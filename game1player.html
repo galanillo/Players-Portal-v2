@@ -13,7 +13,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body class="d-flex flex-column">
+    <body class="d-flex flex-column" onload="Solitaire.start()" onresize="Dimension.calculateAll(Solitaire.getGameType())">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,6 +44,7 @@
                         <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">Titulo del juego</h2>
+                            <a href="juegos_solitario.html"><input type="button" value="Jugar"></input></a>
                             <p class="lead fw-normal text-muted mb-0"> Descripción</p>
                         </div>
                     </div>
