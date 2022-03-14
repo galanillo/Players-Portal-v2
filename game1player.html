@@ -13,7 +13,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/style_juego.css" rel="stylesheet" />
     </head>
-    <body class="d-flex flex-column" onload="Solitaire.start()" onresize="Dimension.calculateAll(Solitaire.getGameType())">
+    <body class="d-flex flex-column" onload="Solitaire.start()" onresize="Dimension.calculateAll(Solitaire.getGameType())" oncontextmenu="return false;">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,6 +44,7 @@
                         <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">Titulo del juego</h2>
+                            <canvas id="screen"></canvas>
                             <script src="src/main/data-structures/Vector2.js"></script>
                             <script src="src/main/Utils.js"></script>
                             <script src="src/main/Assets.js"></script>
