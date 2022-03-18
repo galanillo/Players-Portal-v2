@@ -9,7 +9,158 @@
     </head>
 
     <body>
-        <form class="box" action="conexsignup.php" method="POST">
+
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="index.html">Player's Portal</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="catalogo.html">Jugar a un juego</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Subir un juego</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Sobre nosotros</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Player's Blog</a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
+                                <li><a class="dropdown-item" href="blog-post.html">Postear</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="vh-100 gradient-custom" style="background-color: #508bfc;">
+            <div class="container py-5 h-100">
+              <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12 col-lg-9 col-xl-7">
+                  <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                    <div class="card-body p-4 p-md-5">
+                      <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                      <form>
+          
+                        <div class="row">
+                          <div class="col-md-6 mb-4">
+          
+                            <div class="form-outline">
+                              <input type="text" id="firstName" class="form-control form-control-lg" />
+                              <label class="form-label" for="firstName">First Name</label>
+                            </div>
+          
+                          </div>
+                          <div class="col-md-6 mb-4">
+          
+                            <div class="form-outline">
+                              <input type="text" id="lastName" class="form-control form-control-lg" />
+                              <label class="form-label" for="lastName">Last Name</label>
+                            </div>
+          
+                          </div>
+                        </div>
+          
+                        <div class="row">
+                          <div class="col-md-6 mb-4 d-flex align-items-center">
+          
+                            <div class="form-outline datepicker w-100">
+                              <input
+                                type="text"
+                                class="form-control form-control-lg"
+                                id="birthdayDate"
+                              />
+                              <label for="birthdayDate" class="form-label">Birthday</label>
+                            </div>
+          
+                          </div>
+                          <div class="col-md-6 mb-4">
+          
+                            <h6 class="mb-2 pb-1">Gender: </h6>
+          
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="femaleGender"
+                                value="option1"
+                                checked
+                              />
+                              <label class="form-check-label" for="femaleGender">Female</label>
+                            </div>
+          
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="maleGender"
+                                value="option2"
+                              />
+                              <label class="form-check-label" for="maleGender">Male</label>
+                            </div>
+          
+                            <div class="form-check form-check-inline">
+                              <input
+                                class="form-check-input"
+                                type="radio"
+                                name="inlineRadioOptions"
+                                id="otherGender"
+                                value="option3"
+                              />
+                              <label class="form-check-label" for="otherGender">Other</label>
+                            </div>
+          
+                          </div>
+                        </div>
+          
+                        <div class="row">
+                          <div class="col-md-6 mb-4 pb-2">
+          
+                            <div class="form-outline">
+                              <input type="email" id="emailAddress" class="form-control form-control-lg" />
+                              <label class="form-label" for="emailAddress">Email</label>
+                            </div>
+          
+                          </div>
+                          <div class="col-md-6 mb-4 pb-2">
+          
+                            <div class="form-outline">
+                              <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
+                              <label class="form-label" for="phoneNumber">Phone Number</label>
+                            </div>
+          
+                          </div>
+                        </div>
+          
+                        <div class="row">
+                          <div class="col-12">
+          
+                            <select class="select form-control-lg">
+                              <option value="1" disabled>Choose option</option>
+                              <option value="2">Subject 1</option>
+                              <option value="3">Subject 2</option>
+                              <option value="4">Subject 3</option>
+                            </select>
+                            <label class="form-label select-label">Choose option</label>
+          
+                          </div>
+                        </div>
+          
+                        <div class="mt-4 pt-2">
+                          <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                        </div>
+          
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        <!--
+        <form class="box" method="POST">
             <br><br><br><br><br><br>
             <h2>Crear cuenta</h2>
             
@@ -22,11 +173,12 @@
     
             <input type="submit" value="Registrar" name="btnRegistrar">   
                  <br><br/>
-                <p>Si ya tienes una cuenta, <a href= "login.php"> Logueate</a></p>
-                <p>También puedes <a href= "cambiarcontra.php">cambiar tu contraseña</a></p>
+                <p>Si ya tienes una cuenta, <a href= "login.html"> Logueate</a></p>
+                <p>También puedes <button id="reset-pass-btn">cambiar tu contraseña</button></p>
             </form>
             
         </form>
+        -->
     </body>
     <script type="module" src="./js/firebase.js"></script>
 </html>
