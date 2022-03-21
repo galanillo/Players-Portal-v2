@@ -18,10 +18,10 @@ const TEXT_ALIGN = {
 }
 
 Canvas2D.prototype.resize = function () {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
+    this.canvas.width = 640;
+    this.canvas.height = 360;
+    this.width = 640;
+    this.height = 360;
 }
 
 Canvas2D.prototype.clear = function () {
