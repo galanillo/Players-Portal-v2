@@ -1,3 +1,7 @@
+var pts = 0;
+var frase1 = "Has colocado una carta, recibes 10 pts."
+var frase2 = "Tus puntos totales son:"
+var frases = frase1 + " " + frase2 + " " + pts;
 class Spider extends GameWorld {
 
     constructor() {
@@ -16,10 +20,12 @@ class Spider extends GameWorld {
     }
 
     generate() {
+        var pts=0;
         // Creating a solved game
         for (var i = 0; i < 2; i++) {
             this.deck.openDeck();
         }
+
         this.deck.shuffle();
         var solved = [];
         for (var i = 0; i < this.foundations.length; i++) {
@@ -159,6 +165,11 @@ class Spider extends GameWorld {
                 if (this.piles[i].size() > 0
                     && Utils.pointInRectangle(Vector2.add(Vector2.diff(Mouse.position, Mouse.offset), new Vector2(DIMENSIONS.CARD.width / 2, DIMENSIONS.CARD.height / 2)), this.piles[i].peek().position, DIMENSIONS.CARD.width, DIMENSIONS.CARD.height)
                     && this.isValidMove(Mouse.carried[0], this.piles[i])) {
+                        pts += 10;
+                        var puntos = document.getElementById("puntos");
+                        puntos.innerHTML= `<h2>Puntos: ${pts}<h2>`;
+                        var movimientos = document.getElementById("movimientos");
+                        movimientos.innerHTML += `<i>Has colocado una carta, recibes 10 pts.</i></br>`;
                     this.moveCards(Mouse.carried.reverse(), this.piles[i]);
                     Mouse.carried = [];
                     return;
@@ -240,7 +251,7 @@ class Spider extends GameWorld {
         var stacks = [];
         for (var i = 0; i < this.piles.length; i++) {
             if (this.piles[i].size() == 0 || (this.piles[i].size() > 0 && this.isValidMove(card, this.piles[i])))
-                stacks.push(this.piles[i]);
+                {stacks.push(this.piles[i]); alert('Has movido');}
         }
         return stacks;
     }
@@ -259,3 +270,4 @@ class Spider extends GameWorld {
     }
 
 }
+
