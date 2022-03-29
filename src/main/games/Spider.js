@@ -1,7 +1,6 @@
 var pts = 0;
-var frase1 = "Has colocado una carta, recibes 10 pts."
-var frase2 = "Tus puntos totales son:"
-var frases = frase1 + " " + frase2 + " " + pts;
+var puntos = document.getElementById("puntos");
+var movimientos = document.getElementById("movimientos");
 class Spider extends GameWorld {
 
     constructor() {
@@ -20,8 +19,13 @@ class Spider extends GameWorld {
     }
 
     generate() {
-        var pts=0;
         // Creating a solved game
+        window.addEventListener("beforeunload", function (e) {
+            var confirmationMessage = 'Parece que estabas en partida. '
+                                    + 'Si abandonas serás penalizado.';
+            (e || window.event).returnValue = confirmationMessage; 
+            return confirmationMessage; 
+        });
         for (var i = 0; i < 2; i++) {
             this.deck.openDeck();
         }
@@ -113,6 +117,9 @@ class Spider extends GameWorld {
                             break;
                         }
                     }
+                    pts += 100;
+                    puntos.innerHTML= `<h2>Puntos: ${pts}<h2>`;
+                    movimientos.innerHTML += `<i>Has completado un palo, recibes 100 pts.</i></br>`;
                     this.moveCards(this.piles[i].slice(j), stack);
                 }
             }
@@ -120,6 +127,10 @@ class Spider extends GameWorld {
         // Checks if the game is over
         if (this.deck.size() == 0 && this.piles.every(stack => stack.size() == 0)) {
             this.gameOver = true;
+            pts += 200;
+            puntos.innerHTML= `<h2>Puntos: ${pts}<h2>`;
+            movimientos.innerHTML += `<i>Has completado el juego, recibes 200 pts extra.</i></br>`;
+            alert('¡Enhorabuena, has ganado!');
         }
         if (Mouse.clicked) {
             Mouse.clicked = false;
@@ -166,9 +177,7 @@ class Spider extends GameWorld {
                     && Utils.pointInRectangle(Vector2.add(Vector2.diff(Mouse.position, Mouse.offset), new Vector2(DIMENSIONS.CARD.width / 2, DIMENSIONS.CARD.height / 2)), this.piles[i].peek().position, DIMENSIONS.CARD.width, DIMENSIONS.CARD.height)
                     && this.isValidMove(Mouse.carried[0], this.piles[i])) {
                         pts += 10;
-                        var puntos = document.getElementById("puntos");
                         puntos.innerHTML= `<h2>Puntos: ${pts}<h2>`;
-                        var movimientos = document.getElementById("movimientos");
                         movimientos.innerHTML += `<i>Has colocado una carta, recibes 10 pts.</i></br>`;
                     this.moveCards(Mouse.carried.reverse(), this.piles[i]);
                     Mouse.carried = [];
@@ -268,6 +277,7 @@ class Spider extends GameWorld {
         }
         return true;
     }
+
 
 }
 
