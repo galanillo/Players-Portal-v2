@@ -11335,8 +11335,8 @@ html {
 
 #gameArea {
   position: relative;
-  width: 640px;
-  height: 360px;
+  width: 960px;
+  height: 540px;
 }
 
 #screen {
@@ -11344,5 +11344,35 @@ html {
   width: 100%;
   height: 100%;
   margin-left: -24px;
+}
 
+#movimientos {
+  width: 75%;
+  height: 220px;
+  margin-left: 0px;
+  padding-left: 0%;
+}
+
+#puntos {
+  margin-left: 0px;
+  padding-left: 0%;
+}
+
+#elo {
+  margin-left: 0px;
+  padding-left: 0%;
+}
+
+#columnaPuntos{
+  height: 25%;
+  width: 150%;
+  margin-left:0%;
+}
+
+#solitarioPerfil{
+  padding-right: 2%;
+}
+
+#multijugadorPerfil{
+  padding-right: 2%;
 }

@@ -12,6 +12,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/multiplayer.css" rel="stylesheet">
     </head>
         <main class="flex-shrink-0">
             <!-- Navigation-->
@@ -43,34 +44,38 @@
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-6">
-                            <h2 class="fw-bolder">Solitaire</h2>
-                            <div class="row gx-5">
-                                <div class="col-lg-6"><div id="gameArea">
-                                    <body onload="Solitaire.start()" onresize="Dimension.calculateAll(Solitaire.getGameType())">
-                                        <link rel="stylesheet" href="style.css">
-                                        <canvas id="screen"></canvas>
-                                        <script src="src/main/data-structures/Vector2.js"></script>
-                                        <script src="src/main/Utils.js"></script>
-                                        <script src="src/main/Assets.js"></script>
-                                        <script src="src/main/EventListener.js"></script>
-                                        <script src="src/main/Canvas.js"></script>
-                                        <script src="src/main/data-structures/GameNode.js"></script>
-                                        <script src="src/main/data-structures/GameStack.js"></script>
-                                        <script src="src/main/data-structures/Dimension.js"></script>
-                                        <script src="src/main/Game.js"></script>
-                                        <script src="src/main/GameWorld.js"></script>
-                                        <script src="src/main/Card.js"></script>
-                                        <script src="src/main/data-structures/Stack.js"></script>
-                                        <script src="src/main/data-structures/PyramidStack.js"></script>
-                                      </body>
+                            <h2 class="fw-bolder">Juego en Línea</h2>
+                            <div id="gameArea">
+                                    <div class="game-container">
+                                    </div>
+                                    <div class="player-info">
+                                      <div id="colorArea">
+                                        <button id="player-color">Color</button>
+                                      </div>
+                                      <div id="nombreArea">
+                                        <label for="player-name">Tu Nombre</label>
+                                        <input id="player-name" maxlength="10" type="text" />
+                                      </div>
+                                    </div>
+                                </div>
+                                    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+                                    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+                                    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+                                    <script>
+                                        const firebaseConfig = {
+                                          apiKey: "AIzaSyBtGvQ5KDH8EgnWWJM169BriyXseB8WMCY",
+                                          authDomain: "player-s-portal.firebaseapp.com",
+                                          databaseURL: "https://player-s-portal-default-rtdb.europe-west1.firebasedatabase.app",
+                                          projectId: "player-s-portal",
+                                          storageBucket: "player-s-portal.appspot.com",
+                                          messagingSenderId: "998038850048",
+                                          appId: "1:998038850048:web:ba87b0b3433569c4b126e5",
+                                          measurementId: "G-F5YXJTXNGW"
+                                        };
+                                        firebase.initializeApp(firebaseConfig);
+                                      </script>
                                     </div>
                                     <div class="align-self-end">
-                                        <div id="columnaPuntos" class="col-lg-6">
-                                            <p id="elo" class="lead fw-normal mb-0">ELO en Solitario: 1100</p>
-                                            <div id=puntos><h2>Puntos:</h2></div>
-                                            <div class="overflow-auto" id="movimientos"></div>
-                                            <p class="lead fw-normal text-muted mb-0"> </p>
-                                        </div>
                                         <table class="table">
                                             <thead>
                                               <tr>
@@ -102,11 +107,21 @@
                                             </tbody>
                                           </table>
                                     </div>
-                                </div>
                             </div>
                         </div>
                         
-                        
+                        <div id="texto" class="col-lg-6">
+                            <p class="lead fw-normal mb-0">ELO en ComeMonedas: 900</p>
+                            <div id=puntosMulti><h2>Puntos:</h2></div>
+                            <div class="overflow-auto" id="movimientosMulti"></div>
+                            <p class="lead fw-normal text-muted mb-0"> </p>
+                            <br>
+                            <h2 class="fw-bolder">Reglas</h2><br>
+                            <p class="lead fw-normal text-muted mb-0">· Consigue todas las monedas que puedas antes que los demás.</p>
+                            <p class="lead fw-normal text-muted mb-0">· Tienes un límite de tiempo.</p>
+                            <p class="lead fw-normal text-muted mb-0">· Quien obtenga más monedas al final ganará.</p>
+                            <p class="lead fw-normal text-muted mb-0">· No abandones la partida a medias o serás penalizado.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -115,18 +130,7 @@
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-6">
-                            <h2 class="fw-bolder">Reglas</h2><br>
-                            <p class="lead fw-normal text-muted mb-0">· Hay que colocar una carta menor por encima de la mayor de forma que se pueda ver el número de la que quede debajo.<br>
-
-                                · No se puede colocar cartas del mismo palo ni del mismo color (si no estamos usando una baraja española). Es decir, hay que ir alternando.<br>
-                                
-                                · Si ya no podemos realizar más movimientos, sacaremos tres cartas del mazo y las colocaremos donde corresponda.<br>
-                                
-                                · Podemos mover los varios naipes a la vez y colocarlos encima de otra columna.<br>
-                                
-                                · Cuando se quite una carta boca arriba y quede libre la que está boca abajo, le daremos la vuelta a esta última.<br>
-                                
-                                · Si sale un as, lo pondremos en uno de los cuatro recuadros e iremos colocando de forma ordenada las cartas del mismo palo que podamos.</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -149,7 +153,12 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="src/main/games/Spider.js"></script>
-        <script src="js/scripts.js"></script>
+        <script src="js/KeyPressListener.js"></script>
+        <script>
+        window.onbeforeunload = function(){
+            return 'Are you sure you want to leave?';
+          };
+        </script>          
+        <script src="js/app.js"></script>
     </body>
 </html>

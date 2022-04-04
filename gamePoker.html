@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="stylesheet" href="static/css/text.css" type="text/css">
+   <!-- -->
+   <link rel="stylesheet" href="static/css/poker.css" type="text/css">
+
+   <link rel="shortcut icon" href="static/images/chip5.png" />
+   <link rel="stylesheet" href="static/css/phone.css" type="text/css"
+         media="only screen and (max-width: 1400px)">
+   <script charset="UTF-8" src=static/js/jsholdem/poker.js></script>
+   <script charset="UTF-8" src=static/js/jsholdem/hands.js></script>
+   <script charset="UTF-8" src=static/js/jsholdem/bot.js></script>
+   <script charset="UTF-8" src=static/js/gui_if.js></script>
+        <title>Player's Portal</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><img class="rounded-circle me-3" src="images/galantes50.png" alt="..." />Player's Portal</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="catalogo.html">Jugar a un juego</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Subir un juego</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">Sobre nosotros</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Player's Blog</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
+                                    <li><a class="dropdown-item" href="blog-post.html">Postear</a></li>
+                                </ul>
+                            </li>
+                            <a class="nav-item" href="perfil.html"><img class="rounded-circle me-3" src="images/IconPerfil.png"></a>
+                            <li><button class="btn btn-primary btn-lg btn-block" id="login-btn-page" onclick="window.location.href='login.html'" type="submit">Jugar</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Frame del juego-->
+             <section class="py-5 bg-light" id="scroll-target">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">Poker</h2>
+                            <div class="row gx-5">
+                                <div class="col-lg-6"><div id="gameArea">
+                                        <canvas id="screen"></canvas>
+                                        <body onload="parent.init()">
+    <div id="poker_table" class="poker-table" data-uid="">
+        <div id="seat0" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat1" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat2" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat3" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat4" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat5" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat6" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat7" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat8" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="seat9" class="seat">
+            <div class="holecards">
+                <div class="card holecard1"></div>
+                <div class="card holecard2"></div>
+            </div>
+            <div class="name-chips">
+                <div class="player-name"></div>
+                <div class="chips"></div>
+            </div>
+            <div class="bet"></div>
+        </div>
+        <div id="board">
+            <div id="flop1" class="card boardcard"></div>
+            <div id="flop2" class="card boardcard"></div>
+            <div id="flop3" class="card boardcard"></div>
+            <div id="turn" class="card boardcard"></div>
+            <div id="river" class="card boardcard"></div>
+            <div id="burn1" class="card boardcard"></div>
+            <div id="burn2" class="card boardcard"></div>
+            <div id="burn3" class="card boardcard"></div>
+        </div>
+        <div id="pot">
+            <div id="current-pot"></div>
+            <div id="total-pot"></div>
+        </div>
+    </div>
+    <div id="button" class="seat6-button"></div>
+    <div id="history"></div>
+    <div id="action-options">
+        <div id="fold-button" class="action-button"></div>
+        <div id="call-button" class="action-button"></div>
+    </div>
+    <div id="setup-options">
+        <div id="name-button" class="setup-button">Nombre</div>
+        <div id="speed-button" class="setup-button">Velocidad
+           <div id="speed-selector">
+              <select id="speed-options">
+                 <option value="0">1</option>
+                 <option value="1">2</option>
+                 <option value="2">3</option>
+                 <option value="3">4</option>
+                 <option value="4">5</option>
+              </select>
+           </div>
+        </div>
+        <div id="mode-button" class="setup-button">Modo Oscuro</div>
+        <div id="help-button" class="setup-button">Ayuda</div>
+        <div id="check-button" class="setup-button">Actualizar</div>
+    </div>
+    <div id="quick-raises"></div>
+    <div id="game-response" class="response-normal">Respuesta del juego</div>
+    <div id="production-code"></div>
+    <div id="modal-box"></div>
+</body>
+                                    </div>
+                                    <br><br><br><br><br><br><br><br><br><br><br>
+                                    <div id="eloPoker">
+                                        <p class="lead fw-normal mb-0">ELO en Poker: 1350</p>
+                                        <div id=puntos><h2>Puntos:</h2></div>
+                                        <div id="movimientos"></div>
+                                        <p class="lead fw-normal text-muted mb-0"> </p>
+                                    </div>
+                                    <div class="align-self-end">
+                                        <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Jugador</th>
+                                                <th scope="col">Nivel</th>
+                                                <th scope="col">Puntuación</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">1</th>
+                                                <td>Luis_98</td>
+                                                <td>32</td>
+                                                <td>12.321</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">2</th>
+                                                <td>Galanillo</td>
+                                                <td>34</td>
+                                                <td>9.123</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">3</th>
+                                                <td>Mikystars</td>
+                                                <td>24</td>
+                                                <td>8.039</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+            <!-- Reglas -->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6">
+                            <h2 class="fw-bolder">Reglas</h2><br>
+                            <p class="lead fw-normal text-muted mb-0">· Por lo general, el ganador de cada mano de poker es el jugador que tiene la mano de mayor valor una vez se muestran todas las cartas al final de la mano en curso (lo que se conoce como "confrontación final"), o bien el jugador que realiza la última apuesta no igualada por nadie más y gana así sin necesidad de llegar a la confrontación.<br>
+
+                                · Pasar: pasar es evitar la oportunidad de abrir las apuestas. Los jugadores solo pueden pasar si durante la ronda actual no hay apuestas y, tras hacerlo, le corresponde intervenir al siguiente jugador en el sentido de las agujas del reloj. Si todos los jugadores activos pasan, siguen en la mano y la ronda se da por finalizada.<br>
+                                
+                                · Apostar: los jugadores pueden apostar si no hay otros que lo hagan durante la ronda actual. Una vez realizada una apuesta, los demás jugadores tienen que "igualar" el importe de la misma para mantenerse en la mano.<br>
+                                
+                                · No ir: los jugadores que se retiran pierden sus cartas y no pueden ganar ni volver a intervenir durante la mano en curso.<br>
+                                
+                                · Igualar: los jugadores pueden igualar si otros jugadores han apostado durante la ronda actual; para hacerlo, deben igualar la apuesta más alta realizada.<br>
+                                
+                                · Subir: los jugadores pueden subir si otros jugadores han apostado durante la ronda actual; para hacerlo, deben igualar la apuesta más alta realizada y, a continuación, realizar otra superior. Todos los siguientes jugadores tendrán que ver la subida o subir otra vez ("resubir") la apuesta para seguir en la mano.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Players Portal 2022</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacidad</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Términos</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
