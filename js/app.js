@@ -1,6 +1,8 @@
 var ptsMulti = 0;
+var ptsMultiLogro = 74;
 var puntosMulti = document.getElementById("puntosMulti");
 var movimientosMulti = document.getElementById("movimientosMulti");
+var movimientosMultiLogro = document.getElementById("movimientosMultiLogro");
 
 const mapData = {
     minX: 1,
@@ -146,10 +148,13 @@ const mapData = {
         playerRef.update({
           coins: players[playerId].coins + 1,
         })
-        ptsMulti += 1;
-        puntosMulti.innerHTML= `<h2>Puntos: ${ptsMulti}<h2>`;
-        movimientosMulti.innerHTML += `<i>Has conseguido una moneda, recibes 1 pts.</i></br>`;
-        movimientosMulti.scrollTop = movimientosMulti.scrollHeight; 
+        ptsMulti++;
+        if (ptsMultiLogro < 100) {ptsMultiLogro++;}
+        else {document.getElementById("multiLogro").className = "bi bi-check text-primary";}
+        puntosMulti.innerHTML= `<h2>Puntos: ${players[playerId].coins}<h2>`;
+        movimientosMulti.innerHTML += `<i>· ${players[playerId].name} ha conseguido una moneda, recibe 1 pts.</i></br>`
+        movimientosMulti.scrollTop = movimientosMulti.scrollHeight;
+        movimientosMultiLogro.innerHTML = `${ptsMultiLogro}`;
       }
     }
   

@@ -1,6 +1,8 @@
 var pts = 0;
+var ptsLogro = 132;
 var puntos = document.getElementById("puntos");
 var movimientos = document.getElementById("movimientos");
+var movimientosLogro = document.getElementById("movimientosLogro");
 class Spider extends GameWorld {
 
     constructor() {
@@ -177,8 +179,10 @@ class Spider extends GameWorld {
                     && Utils.pointInRectangle(Vector2.add(Vector2.diff(Mouse.position, Mouse.offset), new Vector2(DIMENSIONS.CARD.width / 2, DIMENSIONS.CARD.height / 2)), this.piles[i].peek().position, DIMENSIONS.CARD.width, DIMENSIONS.CARD.height)
                     && this.isValidMove(Mouse.carried[0], this.piles[i])) {
                         pts += 10;
+                        ptsLogro++;
                         puntos.innerHTML= `<h2>Puntos: ${pts}<h2>`;
                         movimientos.innerHTML += `<i>Has colocado una carta, recibes 10 pts.</i></br>`;
+                        movimientosLogro.innerHTML = `${ptsLogro}`;
                     this.moveCards(Mouse.carried.reverse(), this.piles[i]);
                     Mouse.carried = [];
                     return;
