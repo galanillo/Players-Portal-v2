@@ -3,6 +3,8 @@ var ptsMultiLogro = 74;
 var puntosMulti = document.getElementById("puntosMulti");
 var movimientosMulti = document.getElementById("movimientosMulti");
 var movimientosMultiLogro = document.getElementById("movimientosMultiLogro");
+var monedasClasificacion1 = document.getElementById("monedasClasificacion1");
+var monedasClasificacion2 = document.getElementById("monedasClasificacion2");
 
 const mapData = {
     minX: 1,
@@ -149,8 +151,8 @@ const mapData = {
           coins: players[playerId].coins + 1,
         })
         ptsMulti++;
-        if (ptsMultiLogro < 100) {ptsMultiLogro++;}
-        else {document.getElementById("multiLogro").className = "bi bi-check text-primary";}
+        if (ptsMultiLogro < 99) {ptsMultiLogro++;}
+        else {ptsMultiLogro=100; document.getElementById("multiLogro").className = "bi bi-check text-primary";}
         puntosMulti.innerHTML= `<h2>Puntos: ${players[playerId].coins}<h2>`;
         movimientosMulti.innerHTML += `<i>· ${players[playerId].name} ha conseguido una moneda, recibe 1 pts.</i></br>`
         movimientosMulti.scrollTop = movimientosMulti.scrollHeight;
@@ -193,6 +195,8 @@ const mapData = {
         Object.keys(players).forEach((key) => {
           const characterState = players[key];
           let el = playerElements[key];
+          monedasClasificacion1.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;
+          if(playerId != key){ monedasClasificacion2.innerHTML = `· ${players[key].name}: tiene ${players[key].coins} monedas`;}
           // Now update the DOM
           el.querySelector(".Character_name").innerText = characterState.name;
           el.querySelector(".Character_coins").innerText = characterState.coins;
