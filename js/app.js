@@ -195,8 +195,18 @@ const mapData = {
         Object.keys(players).forEach((key) => {
           const characterState = players[key];
           let el = playerElements[key];
-          monedasClasificacion1.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;
-          if(playerId != key){ monedasClasificacion2.innerHTML = `· ${players[key].name}: tiene ${players[key].coins} monedas`;}
+          if(playerId != key){ if( players[key].coins > players[playerId].coins ){
+            monedasClasificacion1.innerHTML = `· ${players[key].name}: tiene ${players[key].coins} monedas`;
+            monedasClasificacion2.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;}
+            else{
+              monedasClasificacion1.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;
+              monedasClasificacion2.innerHTML = `· ${players[key].name}: tiene ${players[key].coins} monedas`;}
+            }
+            else{
+              monedasClasificacion1.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;
+            }
+          
+          
           // Now update the DOM
           el.querySelector(".Character_name").innerText = characterState.name;
           el.querySelector(".Character_coins").innerText = characterState.coins;
