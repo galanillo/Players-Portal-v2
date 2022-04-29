@@ -46,6 +46,14 @@
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-6">
                             <h2 class="fw-bolder">ComeMonedas</h2>
+                            <ul class="list-unstyled mb-4">
+                              <li class="mb-2">
+                                · Consigue todas las monedas que puedas antes que los demás.
+                              </li>
+                              </ul>
+                              <h3 class="fw-bolder">Clasificación de la sala</h3>
+                            <b id="monedasClasificacion1"></b><br>
+                            <b id="monedasClasificacion2"></b>
                             <div id="gameArea">
                                     <div class="game-container">
                                     </div>
@@ -76,7 +84,46 @@
                                         firebase.initializeApp(firebaseConfig);
                                       </script>
                                     </div>
-                                    <h3 class="fw-bolder">Mejores jugadores</h3>
+                            </div>
+                        </div>
+                        <div id="texto" class="col-lg-6">
+                          <p class="lead fw-normal text-muted mb-0"> </p><br>
+                            <h3 class="fw-bolder">Logros y Recompensas</h3><br>
+                            <ul class="list-unstyled mb-4">
+                              <li class="mb-2">
+                                  <i class="bi bi-check text-primary"></i>
+                                  Consigue más de 20 monedas en una partida <i class="bi bi-arrow-right"></i> 150 PortalPoints
+                              </li>
+                              <li class="mb-2">
+                                  <i class="bi bi-x"></i>
+                                  Derrota a todos los contrincantes de la sala  <i class="bi bi-arrow-right"></i> 200 PortalPoints
+                              </li>
+                              <li class="mb-2">
+                                  <i id="multiLogro" class="bi bi-x"></i>
+                                  Consigue más de 100 monedas (<i id="movimientosMultiLogro">74</i>/100) <i class="bi bi-arrow-right"></i> 300 PortalPoints
+                              </li>
+                              <li class="mb-2">
+                                  <i class="bi bi-x"></i>
+                                  Gana 3 partidas seguidas <i class="bi bi-arrow-right"></i> 300 PortalPoints
+                              </li>
+                          </ul>
+                            <p class="lead fw-normal mb-0">ELO en ComeMonedas: 900</p>
+                            <div id=puntosMulti><h2>Puntos:</h2></div>
+                            <div class="overflow-auto" id="movimientosMulti"></div>
+                          <br>
+                            <h3 class="fw-bolder"><br>Reglas</h3><br>
+                            <ul class="list-unstyled mb-4">
+                              <li class="mb-2">
+                                · Consigue todas las monedas que puedas antes que los demás.
+                              </li>
+                              <li class="mb-2">
+                                  · Tienes un límite de tiempo. 
+                              </li>
+                              <li class="mb-2">
+                                  · Quien obtenga más monedas al final ganará.
+                              </li>
+                          </ul>
+                          <h3 class="fw-bolder">Mejores jugadores</h3>
                                     <div class="align-self-end">
                                         <table class="table">
                                             <thead>
@@ -109,53 +156,6 @@
                                             </tbody>
                                           </table>
                                     </div>
-                            </div>
-                        </div>
-                        
-                        <div id="texto" class="col-lg-6">
-                            <p class="lead fw-normal mb-0">ELO en ComeMonedas: 900</p>
-                            <div id=puntosMulti><h2>Puntos:</h2></div>
-                            <div class="overflow-auto" id="movimientosMulti"></div>
-                            <p class="lead fw-normal text-muted mb-0"> </p><br>
-                            <h3 class="fw-bolder">Logros y Recompensas</h3><br>
-                            <ul class="list-unstyled mb-4">
-                              <li class="mb-2">
-                                  <i class="bi bi-check text-primary"></i>
-                                  Consigue más de 20 monedas en una partida <i class="bi bi-arrow-right"></i> 150 PortalPoints
-                              </li>
-                              <li class="mb-2">
-                                  <i class="bi bi-x"></i>
-                                  Derrota a todos los contrincantes de la sala  <i class="bi bi-arrow-right"></i> 200 PortalPoints
-                              </li>
-                              <li class="mb-2">
-                                  <i id="multiLogro" class="bi bi-x"></i>
-                                  Consigue más de 100 monedas (<i id="movimientosMultiLogro">74</i>/100) <i class="bi bi-arrow-right"></i> 300 PortalPoints
-                              </li>
-                              <li class="mb-2">
-                                  <i class="bi bi-x"></i>
-                                  Gana 3 partidas seguidas <i class="bi bi-arrow-right"></i> 300 PortalPoints
-                              </li>
-                          </ul>
-                          <br>
-                            <h3 class="fw-bolder">Clasificación de la sala</h3>
-                            <b id="monedasClasificacion1"></b><br>
-                            <b id="monedasClasificacion2"></b>
-                            <h3 class="fw-bolder"><br>Reglas</h3><br>
-                            <ul class="list-unstyled mb-4">
-                              <li class="mb-2">
-                                · Consigue todas las monedas que puedas antes que los demás.
-                              </li>
-                              <li class="mb-2">
-                                  · Tienes un límite de tiempo. 
-                              </li>
-                              <li class="mb-2">
-                                  · Quien obtenga más monedas al final ganará.
-                              </li>
-                              <li class="mb-2">
-                                <i class="bi bi-x-circle"></i>
-                                No abandones la partida a medias o serás penalizado.
-                            </li>
-                          </ul>
                         <div>
                     </div>
                 </div>
