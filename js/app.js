@@ -3,8 +3,14 @@ var ptsMultiLogro = 74;
 var puntosMulti = document.getElementById("puntosMulti");
 var movimientosMulti = document.getElementById("movimientosMulti");
 var movimientosMultiLogro = document.getElementById("movimientosMultiLogro");
-var monedasClasificacion1 = document.getElementById("monedasClasificacion1");
-var monedasClasificacion2 = document.getElementById("monedasClasificacion2");
+var monedasClasificacion1icono = document.getElementById("monedasClasificacion1icono");
+var monedasClasificacion2icono = document.getElementById("monedasClasificacion2icono");
+var monedasClasificacion1nombre = document.getElementById("monedasClasificacion1nombre");
+var monedasClasificacion2nombre = document.getElementById("monedasClasificacion2nombre");
+var monedasClasificacion1logros = document.getElementById("monedasClasificacion1logros");
+var monedasClasificacion2logros = document.getElementById("monedasClasificacion2logros");
+var monedasClasificacion1puntos = document.getElementById("monedasClasificacion1puntos");
+var monedasClasificacion2puntos = document.getElementById("monedasClasificacion2puntos");
 
 const mapData = {
     minX: 1,
@@ -196,14 +202,31 @@ const mapData = {
           const characterState = players[key];
           let el = playerElements[key];
           if(playerId != key){ if( players[key].coins > players[playerId].coins ){
-            monedasClasificacion1.innerHTML = `· ${players[key].name}: tiene ${players[key].coins} monedas`;
-            monedasClasificacion2.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;}
+            monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/person-male.png" alt="image">`;
+            monedasClasificacion1nombre.innerHTML = `${players[key].name}`;
+            //monedasClasificacion1logros.innerHTML = ``;
+            monedasClasificacion1puntos.innerHTML = `${players[key].coins}`;
+
+            monedasClasificacion2icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
+            monedasClasificacion2nombre.innerHTML = `${players[playerId].name}`;
+            //monedasClasificacion2logros.innerHTML = ``;
+            monedasClasificacion2puntos.innerHTML = `${players[playerId].coins}`;}
             else{
-              monedasClasificacion1.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;
-              monedasClasificacion2.innerHTML = `· ${players[key].name}: tiene ${players[key].coins} monedas`;}
-            }
+            monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
+            monedasClasificacion1nombre.innerHTML = `${players[playerId].name}`;
+            //monedasClasificacion1logros.innerHTML = ``;
+            monedasClasificacion1puntos.innerHTML = `${players[playerId].coins}`;
+
+            monedasClasificacion2icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/person-male.png" alt="image">`;
+            monedasClasificacion2nombre.innerHTML = `${players[key].name}`;
+            //monedasClasificacion2logros.innerHTML = ``;
+            monedasClasificacion2puntos.innerHTML = `${players[key].coins}`;
+            }}
             else{
-              monedasClasificacion1.innerHTML = `· ${players[playerId].name}: tiene ${players[playerId].coins} monedas`;
+            monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
+            monedasClasificacion1nombre.innerHTML = `${players[playerId].name}`;
+            //monedasClasificacion1logros.innerHTML = ``;
+            monedasClasificacion1puntos.innerHTML = `${players[playerId].coins}`;
             }
           
           

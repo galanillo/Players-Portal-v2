@@ -10,6 +10,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link href="css/multiplayer.css" rel="stylesheet">
@@ -48,12 +49,77 @@
                             <h2 class="fw-bolder">ComeMonedas</h2>
                             <ul class="list-unstyled mb-4">
                               <li class="mb-2">
-                                · Consigue todas las monedas que puedas antes que los demás.
-                              </li>
+                                <i class="bi bi-x-circle"></i>
+                                No abandones la partida a medias o serás penalizado.
+                            </li>
                               </ul>
                               <h3 class="fw-bolder">Clasificación de la sala</h3>
-                            <b id="monedasClasificacion1"></b><br>
-                            <b id="monedasClasificacion2"></b>
+                              <div class="page-content page-container" id="page-content">
+                                <div class="padding">
+                                    <div class="row container d-flex justify-content-center">
+                                          <div class="card">
+                                            <div class="card-body">
+                                              <h4 class="card-title">Jugadores conectados</h4>
+                                              <div class="table-responsive">
+                                                <table id=tablaClasificacion class="table table-striped">
+                                                  <thead>
+                                                    <tr>
+                                                      <th>
+                                                        Icono
+                                                      </th>
+                                                      <th>
+                                                        Usuario
+                                                      </th>
+                                                      <th>
+                                                        Logros
+                                                      </th>
+                                                      <th>
+                                                        Puntos
+                                                      </th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <tr>
+                                                      <td class="py-1">
+                                                        <b id="monedasClasificacion1icono"></b>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion1nombre"></b>
+                                                      </td>
+                                                      <td>
+                                                        <div class="progress">
+                                                          <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> </div>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion1puntos"></b>
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td class="py-1">
+                                                        <b id="monedasClasificacion2icono"></b>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion2nombre"></b>
+                                                      </td>
+                                                      <td>
+                                                        <div class="progress">
+                                                          <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"> </div>
+                                                        </div>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion2puntos"></b>
+                                                      </td>
+                                                    </tr>
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        </div>
+                                          </div>
+                                        </div>
                             <div id="gameArea">
                                     <div class="game-container">
                                     </div>
@@ -92,19 +158,19 @@
                             <ul class="list-unstyled mb-4">
                               <li class="mb-2">
                                   <i class="bi bi-check text-primary"></i>
-                                  Consigue más de 20 monedas en una partida <i class="bi bi-arrow-right"></i> 150 PortalPoints
+                                  <img class="rounded-circle me-3" width="30" height="30" src="images/Badget_6_money.png" alt="..." />Consigue más de 20 monedas en una partida <i class="bi bi-arrow-right"></i> 150 PortalPoints
                               </li>
                               <li class="mb-2">
                                   <i class="bi bi-x"></i>
-                                  Derrota a todos los contrincantes de la sala  <i class="bi bi-arrow-right"></i> 200 PortalPoints
+                                  <img class="rounded-circle me-3" width="30" height="30" src="images/Badget_2_first.png" alt="..." />Derrota a todos los contrincantes de la sala  <i class="bi bi-arrow-right"></i> 200 PortalPoints
                               </li>
                               <li class="mb-2">
                                   <i id="multiLogro" class="bi bi-x"></i>
-                                  Consigue más de 100 monedas (<i id="movimientosMultiLogro">74</i>/100) <i class="bi bi-arrow-right"></i> 300 PortalPoints
+                                  <img class="rounded-circle me-3" width="30" height="30" src="images/Badget_5_gift.png" alt="..." />Consigue más de 100 monedas (<i id="movimientosMultiLogro">74</i>/100) <i class="bi bi-arrow-right"></i> 300 PortalPoints
                               </li>
                               <li class="mb-2">
                                   <i class="bi bi-x"></i>
-                                  Gana 3 partidas seguidas <i class="bi bi-arrow-right"></i> 300 PortalPoints
+                                  <img class="rounded-circle me-3" width="30" height="30" src="images/Badget_4_time.png" alt="..." />Gana 3 partidas seguidas <i class="bi bi-arrow-right"></i> 300 PortalPoints
                               </li>
                           </ul>
                             <p class="lead fw-normal mb-0">ELO en ComeMonedas: 900</p>
