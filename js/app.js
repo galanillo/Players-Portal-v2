@@ -441,7 +441,7 @@ const mapData = {
           if (inactive == 1){
             clearInterval(tiempoPartida);
             document.getElementById("inactividadRec").className = "";
-            document.getElementById("inactividad").innerHTML = `<b>¡La partida ha terminado!</b>`;
+            document.getElementById("inactividad").innerHTML = `<b>¡Has sido expulsado!</b>`;
             }
         }
         timepo60 -= 1;
