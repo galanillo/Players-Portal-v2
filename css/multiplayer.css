@@ -385,3 +385,9 @@ body .rect #time {
       opacity: 0;
   }
 }
+
+#chat{
+  position: sticky;
+  top: 70px;
+  left: 1800px;
+}
