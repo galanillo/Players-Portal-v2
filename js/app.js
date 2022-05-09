@@ -427,6 +427,8 @@ const mapData = {
           document.getElementById("inactividad").innerHTML = "La partida ha terminado.";
           clearInterval(tiempoPartida);
           playerRef.remove();
+          document.getElementById("inactividadRec").className = "";
+          alert('La partida ha terminado.');
         } else {
           document.getElementById("inactividad").innerHTML = `<b>${timepo60} segundos</b> para que termine la partida`;
         }
