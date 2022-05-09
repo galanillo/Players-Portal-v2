@@ -80,7 +80,13 @@ class GameWorld {
         if (this.gameOver) {
             var textHeight = Canvas.height * 0.2;
             Canvas.drawRect(new Vector2(0, (Canvas.height - textHeight) / 2 - 5), Canvas.width, textHeight + 10, COLORS.BACKGROUND.DARKER_GREEN, 0.7);
-            Canvas.drawText("Solved", new Vector2(Canvas.width / 2, Canvas.height / 2), textHeight, COLORS.BACKGROUND.LIGHT_GRAY);
+            Canvas.drawText("Ganaste", new Vector2(Canvas.width / 2, Canvas.height / 2), textHeight, COLORS.BACKGROUND.LIGHT_GRAY);
+        }
+
+        if (this.gameTime) {
+            var textHeight = Canvas.height * 0.2;
+            Canvas.drawRect(new Vector2(0, (Canvas.height - textHeight) / 2 - 5), Canvas.width, textHeight + 10, COLORS.BACKGROUND.DARKER_GREEN, 0.7);
+            Canvas.drawText("Tiempo Excedido", new Vector2(Canvas.width / 2, Canvas.height / 2), textHeight, COLORS.BACKGROUND.LIGHT_GRAY);
         }
     }
 

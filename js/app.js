@@ -3,12 +3,17 @@ var ptsMultiLogro = 74;
 var puntosMulti = document.getElementById("puntosMulti");
 var movimientosMulti = document.getElementById("movimientosMulti");
 var movimientosMultiLogro = document.getElementById("movimientosMultiLogro");
+var logrosCard = document.getElementById("logrosCard");
 var monedasClasificacion1icono = document.getElementById("monedasClasificacion1icono");
 var monedasClasificacion2icono = document.getElementById("monedasClasificacion2icono");
 var monedasClasificacion1nombre = document.getElementById("monedasClasificacion1nombre");
 var monedasClasificacion2nombre = document.getElementById("monedasClasificacion2nombre");
 var monedasClasificacion1logros = document.getElementById("monedasClasificacion1logros");
 var monedasClasificacion2logros = document.getElementById("monedasClasificacion2logros");
+var monedasClasificacion1monedas = document.getElementById("monedasClasificacion1monedas");
+var monedasClasificacion2monedas = document.getElementById("monedasClasificacion2monedas");
+var monedasClasificacion1diamantes = document.getElementById("monedasClasificacion1diamantes");
+var monedasClasificacion2diamantes = document.getElementById("monedasClasificacion2diamantes");
 var monedasClasificacion1puntos = document.getElementById("monedasClasificacion1puntos");
 var monedasClasificacion2puntos = document.getElementById("monedasClasificacion2puntos");
 
@@ -58,23 +63,6 @@ const mapData = {
       "Juan",
       "Chechu",
     ]);
-    const animal = randomFromArray([
-      "BEAR",
-      "DOG",
-      "CAT",
-      "FOX",
-      "LAMB",
-      "LION",
-      "BOAR",
-      "GOAT",
-      "VOLE",
-      "SEAL",
-      "PUMA",
-      "MULE",
-      "BULL",
-      "BIRD",
-      "BUG",
-    ]);
     return `${nombre}`;
   }
   
@@ -93,29 +81,34 @@ const mapData = {
   function getRandomSafeSpot() {
     //We don't look things up by key here, so just return an x/y
     return randomFromArray([
-      { x: 1, y: 4 },
       { x: 2, y: 4 },
       { x: 1, y: 5 },
       { x: 2, y: 6 },
       { x: 2, y: 8 },
       { x: 2, y: 9 },
-      { x: 4, y: 8 },
       { x: 5, y: 5 },
       { x: 5, y: 8 },
       { x: 5, y: 10 },
       { x: 5, y: 11 },
       { x: 11, y: 7 },
-      { x: 12, y: 7 },
-      { x: 13, y: 7 },
       { x: 13, y: 6 },
       { x: 13, y: 8 },
       { x: 7, y: 6 },
       { x: 7, y: 7 },
       { x: 7, y: 8 },
-      { x: 8, y: 8 },
       { x: 10, y: 8 },
-      { x: 8, y: 8 },
       { x: 11, y: 4 },
+    ]);
+  }
+
+  function getRandomSafeSpotDiamond() {
+    //We don't look things up by key here, so just return an x/y
+    return randomFromArray([
+      { x: 1, y: 4 },
+      { x: 4, y: 8 },
+      { x: 12, y: 7 },
+      { x: 13, y: 7 },
+      { x: 8, y: 8 },
     ]);
   }
   
@@ -127,7 +120,10 @@ const mapData = {
     let players = {};
     let playerElements = {};
     let coins = {};
+    let diamonds = {};
+    let points = {};
     let coinElements = {};
+    let diamondElements = {};
   
     const gameContainer = document.querySelector(".game-container");
     const playerNameInput = document.querySelector("#player-name");
@@ -147,6 +143,20 @@ const mapData = {
         placeCoin();
       }, randomFromArray(coinTimeouts));
     }
+
+    function placeDiamond() {
+      const { x, y } = getRandomSafeSpotDiamond();
+      const diamondRef = firebase.database().ref(`diamonds/${getKeyString(x, y)}`);
+      diamondRef.set({
+        x,
+        y,
+      })
+  
+      const diamondTimeouts = [5000, 7000, 8000, 9000];
+      setTimeout(() => {
+        placeDiamond();
+      }, randomFromArray(diamondTimeouts));
+    }
   
     function attemptGrabCoin(x, y) {
       const key = getKeyString(x, y);
@@ -155,14 +165,31 @@ const mapData = {
         firebase.database().ref(`coins/${key}`).remove();
         playerRef.update({
           coins: players[playerId].coins + 1,
+          points: players[playerId].points + 1,
         })
         ptsMulti++;
         if (ptsMultiLogro < 99) {ptsMultiLogro++;}
-        else {ptsMultiLogro=100; document.getElementById("multiLogro").className = "bi bi-check text-primary";}
-        puntosMulti.innerHTML= `<h2>Puntos: ${players[playerId].coins}<h2>`;
+        else { logrosCard.innerHTML= `2`;
+          ptsMultiLogro=100; document.getElementById("multiLogro").className = "bi bi-check text-primary";}
+        puntosMulti.innerHTML= `<h2>Puntos: ${players[playerId].points}<h2>`;
         movimientosMulti.innerHTML += `<i>· ${players[playerId].name} ha conseguido una moneda, recibe 1 pts.</i></br>`
         movimientosMulti.scrollTop = movimientosMulti.scrollHeight;
         movimientosMultiLogro.innerHTML = `${ptsMultiLogro}`;
+      }
+    }
+
+    function attemptGrabDiamond(x, y) {
+      const key = getKeyString(x, y);
+      if (diamonds[key]) {
+        // Remove this key from data, then uptick Player's coin count
+        firebase.database().ref(`diamonds/${key}`).remove();
+        playerRef.update({
+          diamonds: players[playerId].diamonds + 1,
+          points: players[playerId].points + 3,
+        })
+        puntosMulti.innerHTML= `<h2>Puntos: ${players[playerId].points}<h2>`;
+        movimientosMulti.innerHTML += `<i>· ${players[playerId].name} ha conseguido un diamante, recibe 3 pts.</i></br>`
+        movimientosMulti.scrollTop = movimientosMulti.scrollHeight;
       }
     }
   
@@ -182,6 +209,7 @@ const mapData = {
         }
         playerRef.set(players[playerId]);
         attemptGrabCoin(newX, newY);
+        attemptGrabDiamond(newX, newY);
       }
     }
   
@@ -194,45 +222,64 @@ const mapData = {
   
       const allPlayersRef = firebase.database().ref(`players`);
       const allCoinsRef = firebase.database().ref(`coins`);
+      const allDiamondsRef = firebase.database().ref(`diamonds`);
   
       allPlayersRef.on("value", (snapshot) => {
         //Fires whenever a change occurs
         players = snapshot.val() || {};
+        monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
+            monedasClasificacion1nombre.innerHTML = `${players[playerId].name}`;
+            monedasClasificacion1logros.innerHTML = `<div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> </div>
+          </div>`;
+            monedasClasificacion1monedas.innerHTML = `${players[playerId].coins}`;
+            monedasClasificacion1diamantes.innerHTML = `${players[playerId].diamonds}`;
+            monedasClasificacion1puntos.innerHTML = `${players[playerId].points}`;
         Object.keys(players).forEach((key) => {
           const characterState = players[key];
           let el = playerElements[key];
-          if(playerId != key){ if( players[key].coins > players[playerId].coins ){
+          if(playerId != key){ if( players[key].points > players[playerId].points ){
             monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/person-male.png" alt="image">`;
             monedasClasificacion1nombre.innerHTML = `${players[key].name}`;
-            //monedasClasificacion1logros.innerHTML = ``;
-            monedasClasificacion1puntos.innerHTML = `${players[key].coins}`;
+            monedasClasificacion1logros.innerHTML = `<div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> </div>
+          </div>`;
+            monedasClasificacion1monedas.innerHTML = `${players[key].coins}`;
+            monedasClasificacion1diamantes.innerHTML = `${players[key].diamonds}`;
+            monedasClasificacion1puntos.innerHTML = `${players[key].points}`;
 
             monedasClasificacion2icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
             monedasClasificacion2nombre.innerHTML = `${players[playerId].name}`;
-            //monedasClasificacion2logros.innerHTML = ``;
-            monedasClasificacion2puntos.innerHTML = `${players[playerId].coins}`;}
+            monedasClasificacion2logros.innerHTML = `<div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"> </div>
+          </div>`;
+          monedasClasificacion2monedas.innerHTML = `${players[playerId].coins}`;
+          monedasClasificacion2diamantes.innerHTML = `${players[playerId].diamonds}`;
+          monedasClasificacion2puntos.innerHTML = `${players[playerId].points}`;}
             else{
             monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
             monedasClasificacion1nombre.innerHTML = `${players[playerId].name}`;
-            //monedasClasificacion1logros.innerHTML = ``;
-            monedasClasificacion1puntos.innerHTML = `${players[playerId].coins}`;
+            monedasClasificacion1logros.innerHTML = `<div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> </div>
+          </div>`;
+            monedasClasificacion1monedas.innerHTML = `${players[playerId].coins}`;
+            monedasClasificacion1diamantes.innerHTML = `${players[playerId].diamonds}`;
+            monedasClasificacion1puntos.innerHTML = `${players[playerId].points}`;
 
             monedasClasificacion2icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/person-male.png" alt="image">`;
             monedasClasificacion2nombre.innerHTML = `${players[key].name}`;
-            //monedasClasificacion2logros.innerHTML = ``;
-            monedasClasificacion2puntos.innerHTML = `${players[key].coins}`;
+            monedasClasificacion2logros.innerHTML = `<div class="progress">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"> </div>
+          </div>`;
+            monedasClasificacion2monedas.innerHTML = `${players[key].coins}`;
+            monedasClasificacion2diamantes.innerHTML = `${players[key].diamonds}`;
+            monedasClasificacion2puntos.innerHTML = `${players[key].points}`;
             }}
-            else{
-            monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/guest-male.png" alt="image">`;
-            monedasClasificacion1nombre.innerHTML = `${players[playerId].name}`;
-            //monedasClasificacion1logros.innerHTML = ``;
-            monedasClasificacion1puntos.innerHTML = `${players[playerId].coins}`;
-            }
-          
+        
           
           // Now update the DOM
           el.querySelector(".Character_name").innerText = characterState.name;
-          el.querySelector(".Character_coins").innerText = characterState.coins;
+          el.querySelector(".Character_coins").innerText = characterState.points;
           el.setAttribute("data-color", characterState.color);
           el.setAttribute("data-direction", characterState.direction);
           const left = 16 * characterState.x + "px";
@@ -261,7 +308,7 @@ const mapData = {
   
         //Fill in some initial state
         characterElement.querySelector(".Character_name").innerText = addedPlayer.name;
-        characterElement.querySelector(".Character_coins").innerText = addedPlayer.coins;
+        characterElement.querySelector(".Character_coins").innerText = addedPlayer.points;
         characterElement.setAttribute("data-color", addedPlayer.color);
         characterElement.setAttribute("data-direction", addedPlayer.direction);
         const left = 16 * addedPlayer.x + "px";
@@ -300,11 +347,42 @@ const mapData = {
         coinElements[key] = coinElement;
         gameContainer.appendChild(coinElement);
       })
+
+      allDiamondsRef.on("child_added", (snapshot) => {
+        const diamond = snapshot.val();
+        const key = getKeyString(diamond.x, diamond.y);
+        diamonds[key] = true;
+  
+        // Create the DOM Element
+        const diamondElement = document.createElement("div");
+        diamondElement.classList.add("Diamond", "grid-cell");
+        diamondElement.innerHTML = `
+          <div class="Diamond_shadow grid-cell"></div>
+          <div class="Diamond_sprite grid-cell"></div>
+        `;
+        
+        // Position the Element
+        const left = 16 * diamond.x + "px";
+        const top = 16 * diamond.y - 4 + "px";
+        diamondElement.style.transform = `translate3d(${left}, ${top}, 0)`;
+  
+        // Keep a reference for removal later and add to DOM
+        diamondElements[key] = diamondElement;
+        gameContainer.appendChild(diamondElement);
+      })
+
       allCoinsRef.on("child_removed", (snapshot) => {
         const {x,y} = snapshot.val();
         const keyToRemove = getKeyString(x,y);
         gameContainer.removeChild( coinElements[keyToRemove] );
         delete coinElements[keyToRemove];
+      })
+
+      allDiamondsRef.on("child_removed", (snapshot) => {
+        const {x,y} = snapshot.val();
+        const keyToRemove = getKeyString(x,y);
+        gameContainer.removeChild( diamondElements[keyToRemove] );
+        delete diamondElements[keyToRemove];
       })
   
   
@@ -328,6 +406,8 @@ const mapData = {
   
       //Place my first coin
       placeCoin();
+
+      placeDiamond();
   
     }
   
@@ -352,6 +432,8 @@ const mapData = {
           x,
           y,
           coins: 0,
+          diamonds: 0,
+          points: 0,
         })
   
         //Remove me from Firebase when I diconnect

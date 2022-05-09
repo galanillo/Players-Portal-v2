@@ -44,7 +44,40 @@
                 <div class="container px-5 my-5">
                     <div class="row gx-5 align-items-center">
                         <div class="col-lg-6">
-                            <h2 class="fw-bolder">Solitaire</h2>
+                            <h2 class="fw-bolder">Solitario</h2>
+                            <div id="statsSoli" class="card h-45">
+                                <div class="card-body">
+                                  <h6 class="d-flex align-items-center mb-3"><i id="solitarioPerfil" class="material-icons text-info mr-2">Juego:</i>Solitario</h6>
+                                  <small>Tiempo medio de las partidas: 5:32</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Número de partida: 32</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Victorias: 2</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 20%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Elo en solitario: 1100</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Clasificación entre tus amigos: 2º de 3</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Logros en Solitario: 2/5</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                      <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>PortalPoints obtenidos por Logros: 750 puntos</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                      <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                              </div>
                             <div class="row gx-5">
                                 <div class="col-lg-6"><div id="gameArea">
                                     <body onload="Solitaire.start()" onresize="Dimension.calculateAll(Solitaire.getGameType())">
@@ -67,42 +100,17 @@
                                     </div>
                                     <div class="align-self-end">
                                         <div id="columnaPuntos" class="col-lg-6">
-                                            <p id="elo" class="lead fw-normal mb-0">ELO en Solitario: 1100</p>
+                                            <p id="elo" class="lead fw-normal mb-0">ELO en Solitario: 1100</p><br>
+                                            <div class="rect">
+                                              <div class="rec"></div>
+                                              <div id="contador"></div>
+                                          </div>
+                                            
                                             <div id=puntos><h2>Puntos:</h2></div>
                                             <div class="overflow-auto" id="movimientos"></div>
                                             <p class="lead fw-normal text-muted mb-0"> </p>
                                         </div>
-                                        <h3 class="fw-bolder">Mejores Jugadores</h3><br>
-                                        <table class="table">
-                                            <thead>
-                                              <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Jugador</th>
-                                                <th scope="col">Nivel</th>
-                                                <th scope="col">Puntuación</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                              <tr>
-                                                <th scope="row">1</th>
-                                                <td>Marcos_95</td>
-                                                <td>29</td>
-                                                <td>34.578</td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">2</th>
-                                                <td>Galanillo</td>
-                                                <td>34</td>
-                                                <td>33.247</td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">3</th>
-                                                <td>Mikystars</td>
-                                                <td>24</td>
-                                                <td>29.039</td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -141,6 +149,37 @@
                             </li>
                           </ul>
                             <br>
+                            <h3 class="fw-bolder">Mejores Jugadores</h3><br>
+                                        <table id="tablaSoli" class="table">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Jugador</th>
+                                                <th scope="col">Nivel</th>
+                                                <th scope="col">Puntuación</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th scope="row">1</th>
+                                                <td>Marcos_95</td>
+                                                <td>29</td>
+                                                <td>34.578</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">2</th>
+                                                <td>Galanillo</td>
+                                                <td>34</td>
+                                                <td>33.247</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">3</th>
+                                                <td>Mikystars</td>
+                                                <td>24</td>
+                                                <td>29.039</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
                             <h3 class="fw-bolder">Reglas</h3><br>
                             <ul class="list-unstyled mb-4">
                               <li class="mb-2">

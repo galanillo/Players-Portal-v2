@@ -53,15 +53,47 @@
                                 No abandones la partida a medias o serás penalizado.
                             </li>
                               </ul>
+                              <div id="statsMulti" class="card h-45">
+                                <div class="card-body">
+                                  <h6 class="d-flex align-items-center mb-3"><i id="multijugadorPerfil" class="material-icons text-info mr-2">Juego:</i>ComeMonedas</h6>
+                                  <small>Tiempo medio de las partidas: 2:30</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 54%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Número de partida: 3</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 12%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Victorias: 1</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Elo en ComeMonedas: 650</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 32%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Clasificación entre tus amigos: 2º de 3</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>Logros en ComeMonedas: <span id="logrosCard">1</span>/4</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 33%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                  <small>PortalPoints obtenidos por Logros: 150 puntos</small>
+                                  <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 15%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                  </div>
+                                </div>
+                              </div>
                               <h3 class="fw-bolder">Clasificación de la sala</h3>
                               <div class="page-content page-container" id="page-content">
-                                <div class="padding">
                                     <div class="row container d-flex justify-content-center">
                                           <div class="card">
-                                            <div class="card-body">
+                                            <div id="marcoTabla" class="acard-body">
                                               <h4 class="card-title">Jugadores conectados</h4>
                                               <div class="table-responsive">
-                                                <table id=tablaClasificacion class="table table-striped">
+                                                <table id=tabla class="table table-striped">
                                                   <thead>
                                                     <tr>
                                                       <th>
@@ -72,6 +104,12 @@
                                                       </th>
                                                       <th>
                                                         Logros
+                                                      </th>
+                                                      <th>
+                                                        Monedas
+                                                      </th>
+                                                      <th>
+                                                        Diamantes
                                                       </th>
                                                       <th>
                                                         Puntos
@@ -87,9 +125,13 @@
                                                         <b id="monedasClasificacion1nombre"></b>
                                                       </td>
                                                       <td>
-                                                        <div class="progress">
-                                                          <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> </div>
-                                                        </div>
+                                                        <b id="monedasClasificacion1logros"></b>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion1monedas"></b>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion1diamantes"></b>
                                                       </td>
                                                       <td>
                                                         <b id="monedasClasificacion1puntos"></b>
@@ -103,9 +145,13 @@
                                                         <b id="monedasClasificacion2nombre"></b>
                                                       </td>
                                                       <td>
-                                                        <div class="progress">
-                                                          <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"> </div>
-                                                        </div>
+                                                        <b id="monedasClasificacion2logros"></b>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion2monedas"></b>
+                                                      </td>
+                                                      <td>
+                                                        <b id="monedasClasificacion2diamantes"></b>
                                                       </td>
                                                       <td>
                                                         <b id="monedasClasificacion2puntos"></b>
@@ -180,13 +226,16 @@
                             <h3 class="fw-bolder"><br>Reglas</h3><br>
                             <ul class="list-unstyled mb-4">
                               <li class="mb-2">
-                                · Consigue todas las monedas que puedas antes que los demás.
+                                · Consigue todas las monedas y diamantes que puedas antes que los demás.
+                              </li>
+                              <li class="mb-2">
+                                · Las monedas suman 1 punto y los diamantes 3 puntos.
                               </li>
                               <li class="mb-2">
                                   · Tienes un límite de tiempo. 
                               </li>
                               <li class="mb-2">
-                                  · Quien obtenga más monedas al final ganará.
+                                  · Quien obtenga más puntos al final ganará.
                               </li>
                           </ul>
                           <h3 class="fw-bolder">Mejores jugadores</h3>

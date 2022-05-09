@@ -11376,3 +11376,84 @@ html {
 #multijugadorPerfil{
   padding-right: 2%;
 }
+
+#statsSoli{
+  position: absolute;
+  right: 180px;
+  margin-bottom: 1rem;
+  flex: 0 0 auto;
+}
+
+#tablaSoli{
+  width: 90%;
+}
+
+#contador{
+  padding-left: 10%;
+  padding-top: 4%;;
+}
+
+body .rect {
+  width: auto;
+  height: 64px;
+  padding-right: 20px;
+  border-radius: 16px;
+  background: #fff;
+}
+
+body .rect .rec {
+  width: 12px;
+  height: 12px;
+  background: #ff2b00;
+  border-radius: 50%;
+  margin-top: 26px;
+  margin-left: 16px;
+  position: absolute;
+  -webkit-animation: Anime 1s linear infinite;
+  animation: Anime 1s linear infinite;
+}
+
+body .rect #time {
+  font-size: 34px;
+  line-height: 64px;
+  margin-left: 40px;
+  font-weight: 300;
+  font-family: "Helvetica";
+}
+
+@-webkit-keyframes Anime {
+  0% {
+      opacity: 1;
+  }
+
+  50% {
+      opacity: 1;
+  }
+
+  75% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 0;
+  }
+}
+
+@keyframes Anime {
+  0% {
+      opacity: 1;
+  }
+
+  50% {
+      opacity: 1;
+  }
+
+  75% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 0;
+  }
+}
+

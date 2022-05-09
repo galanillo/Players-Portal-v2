@@ -1,8 +1,13 @@
 var pts = 0;
+var tiempoRestante = 30;
 var ptsLogro = 132;
+var fin = 0;
 var puntos = document.getElementById("puntos");
 var movimientos = document.getElementById("movimientos");
 var movimientosLogro = document.getElementById("movimientosLogro");
+var Timer = function(){};
+
+
 class Spider extends GameWorld {
 
     constructor() {
@@ -126,6 +131,13 @@ class Spider extends GameWorld {
                 }
             }
         }
+
+        
+        if (fin == 1){
+            this.gameTime = true;
+        }
+
+
         // Checks if the game is over
         if (this.deck.size() == 0 && this.piles.every(stack => stack.size() == 0)) {
             this.gameOver = true;
@@ -182,6 +194,7 @@ class Spider extends GameWorld {
                         ptsLogro++;
                         puntos.innerHTML= `<h2>Puntos: ${pts}<h2>`;
                         movimientos.innerHTML += `<i>Has colocado una carta, recibes 10 pts.</i></br>`;
+                        tiempoRestante=30;
                         movimientosLogro.innerHTML = `${ptsLogro}`;
                     this.moveCards(Mouse.carried.reverse(), this.piles[i]);
                     Mouse.carried = [];
@@ -281,6 +294,17 @@ class Spider extends GameWorld {
         }
         return true;
     }
+
+    Timer = setInterval(function(){
+        if(tiempoRestante <= 0){
+          document.getElementById("contador").innerHTML = "El tiempo restante ha terminado. No tardes tanto la próxima vez.";
+          clearInterval(Timer);
+          fin = 1;
+        } else {
+          document.getElementById("contador").innerHTML = `<b>${tiempoRestante} segundos</b> restantes para mover`;
+        }
+        tiempoRestante -= 1;
+      }, 1000);
 
 
 }

@@ -146,19 +146,34 @@ button:active {
   background: url(/images/coin-shadow.png) no-repeat no-repeat;
 }
 
+/* Diamonds */
+.Diamond_sprite {
+  background: url(/images/diamond.png) no-repeat no-repeat;
+  animation: diamondFloat 1s linear infinite alternate-reverse;
+}
+@keyframes diamondFloat {
+  from { transform: translateY(0) }
+  to { transform: translateY(5px) }
+}
+.Diamond_shadow {
+  background: url(/images/coin-shadow.png) no-repeat no-repeat;
+}
+
+
 #gameArea {
  position: absolute;
  padding-left: 35%;
- padding-top: 14%;
+ padding-top: 0%;
 }
 
 #nombreArea {
   padding-right: 0%;
+  padding-bottom: 0%;
 }
 
 #colorArea{
-  padding-left: 250%;
-  padding-top: 20%;
+  padding-left: 145%;
+  padding-bottom: 0%;
 }
 
 #texto{
@@ -283,3 +298,13 @@ p {
  margin-top:7px;
 }
 
+#marcoTabla{
+  background-position-y: -200px;
+}
+
+#statsMulti{
+  position: absolute;
+  right: 150px;
+  margin-bottom: 1rem;
+  flex: 0 0 auto;
+}
