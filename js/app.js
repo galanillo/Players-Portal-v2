@@ -20,6 +20,7 @@ var tiempoRestante = 30;
 var timepo60 = 60;
 var tiempoPartida = function(){};
 var Timer = function(){};
+var inactive = 0;
 
 const mapData = {
     minX: 1,
@@ -416,21 +417,26 @@ const mapData = {
           document.getElementById("contador").innerHTML = "El tiempo restante ha terminado. No tardes tanto la próxima vez.";
           clearInterval(Timer);
           playerRef.remove();
+          inactive = 1;
         } else {
-          document.getElementById("contador").innerHTML = `Alerta Inactividad: <b>${tiempoRestante} segundos</b> restantes conseguir puntos o serás expulsado`;
+          document.getElementById("contador").innerHTML = `Alerta Inactividad: <b>${tiempoRestante} segundos</b> restantes para conseguir puntos o serás expulsado`;
         }
         tiempoRestante -= 1;
       }, 1000);
 
       tiempoPartida = setInterval(function(){
         if(timepo60 <= 0){
-          document.getElementById("inactividad").innerHTML = "La partida ha terminado.";
+          document.getElementById("inactividad").innerHTML = `<b>¡La partida ha terminado!</b>`;
           clearInterval(tiempoPartida);
           playerRef.remove();
           document.getElementById("inactividadRec").className = "";
-          alert('La partida ha terminado.');
         } else {
           document.getElementById("inactividad").innerHTML = `<b>${timepo60} segundos</b> para que termine la partida`;
+          if (inactive == 1){
+            clearInterval(tiempoPartida);
+            document.getElementById("inactividadRec").className = "";
+            document.getElementById("inactividad").innerHTML = `<b>¡La partida ha terminado!</b>`;
+            }
         }
         timepo60 -= 1;
       }, 1000);
