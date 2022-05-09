@@ -16,6 +16,10 @@ var monedasClasificacion1diamantes = document.getElementById("monedasClasificaci
 var monedasClasificacion2diamantes = document.getElementById("monedasClasificacion2diamantes");
 var monedasClasificacion1puntos = document.getElementById("monedasClasificacion1puntos");
 var monedasClasificacion2puntos = document.getElementById("monedasClasificacion2puntos");
+var tiempoRestante = 30;
+var timepo60 = 60;
+var tiempoPartida = function(){};
+var Timer = function(){};
 
 const mapData = {
     minX: 1,
@@ -37,6 +41,7 @@ const mapData = {
       "9x9": true,
     },
   };
+  
 
   window.addEventListener("keydown", function(e) {
     if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
@@ -175,6 +180,7 @@ const mapData = {
         movimientosMulti.innerHTML += `<i>· ${players[playerId].name} ha conseguido una moneda, recibe 1 pts.</i></br>`
         movimientosMulti.scrollTop = movimientosMulti.scrollHeight;
         movimientosMultiLogro.innerHTML = `${ptsMultiLogro}`;
+        tiempoRestante = 30;
       }
     }
 
@@ -190,6 +196,7 @@ const mapData = {
         puntosMulti.innerHTML= `<h2>Puntos: ${players[playerId].points}<h2>`;
         movimientosMulti.innerHTML += `<i>· ${players[playerId].name} ha conseguido un diamante, recibe 3 pts.</i></br>`
         movimientosMulti.scrollTop = movimientosMulti.scrollHeight;
+        tiempoRestante = 30;
       }
     }
   
@@ -403,6 +410,28 @@ const mapData = {
           color: nextColor
         })
       })
+
+      Timer = setInterval(function(){
+        if(tiempoRestante <= 0){
+          document.getElementById("contador").innerHTML = "El tiempo restante ha terminado. No tardes tanto la próxima vez.";
+          clearInterval(Timer);
+          playerRef.remove();
+        } else {
+          document.getElementById("contador").innerHTML = `Alerta Inactividad: <b>${tiempoRestante} segundos</b> restantes conseguir puntos o serás expulsado`;
+        }
+        tiempoRestante -= 1;
+      }, 1000);
+
+      tiempoPartida = setInterval(function(){
+        if(timepo60 <= 0){
+          document.getElementById("inactividad").innerHTML = "La partida ha terminado.";
+          clearInterval(tiempoPartida);
+          playerRef.remove();
+        } else {
+          document.getElementById("inactividad").innerHTML = `<b>${timepo60} segundos</b> para que termine la partida`;
+        }
+        timepo60 -= 1;
+      }, 1000);
   
       //Place my first coin
       placeCoin();

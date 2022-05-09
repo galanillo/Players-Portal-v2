@@ -1,10 +1,10 @@
 var pts = 0;
-var tiempoRestante = 30;
 var ptsLogro = 132;
 var fin = 0;
 var puntos = document.getElementById("puntos");
 var movimientos = document.getElementById("movimientos");
 var movimientosLogro = document.getElementById("movimientosLogro");
+var tiempoRestante = 30;
 var Timer = function(){};
 
 
