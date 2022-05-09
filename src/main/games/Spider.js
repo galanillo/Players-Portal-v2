@@ -27,6 +27,8 @@ class Spider extends GameWorld {
 
     generate() {
         // Creating a solved game
+        document.getElementById("inactividadRec").className = "rec";
+
         window.addEventListener("beforeunload", function (e) {
             var confirmationMessage = 'Parece que estabas en partida. '
                                     + 'Si abandonas serás penalizado.';
@@ -299,6 +301,7 @@ class Spider extends GameWorld {
         if(tiempoRestante <= 0){
           document.getElementById("contador").innerHTML = "El tiempo restante ha terminado. No tardes tanto la próxima vez.";
           clearInterval(Timer);
+          document.getElementById("inactividadRec").className = "";
           fin = 1;
         } else {
           document.getElementById("contador").innerHTML = `<b>${tiempoRestante} segundos</b> restantes para mover`;
