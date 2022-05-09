@@ -240,7 +240,7 @@ const mapData = {
           let el = playerElements[key];
           if(playerId != key){ if( players[key].points > players[playerId].points ){
             monedasClasificacion1icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/person-male.png" alt="image">`;
-            monedasClasificacion1nombre.innerHTML = `${players[key].name}`;
+            monedasClasificacion1nombre.innerHTML = `<a href="perfil2.html"> @${players[key].name} </a>`;
             monedasClasificacion1logros.innerHTML = `<div class="progress">
             <div class="progress-bar bg-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"> </div>
           </div>`;
@@ -267,7 +267,7 @@ const mapData = {
             monedasClasificacion1puntos.innerHTML = `${players[playerId].points}`;
 
             monedasClasificacion2icono.innerHTML = `<img src="https://img.icons8.com/color/36/000000/person-male.png" alt="image">`;
-            monedasClasificacion2nombre.innerHTML = `${players[key].name}`;
+            monedasClasificacion2nombre.innerHTML = `<a href="perfil2.html"> @${players[key].name} </a>`;
             monedasClasificacion2logros.innerHTML = `<div class="progress">
             <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"> </div>
           </div>`;
