@@ -170,7 +170,7 @@ button:active {
 #nombreArea {
   padding-right: 0%;
   padding-bottom: 0%;
-  padding-top: 85%;
+  padding-top: 75%;
 }
 
 #colorArea{
@@ -387,7 +387,7 @@ body .rect #time {
 }
 
 #chat{
-  position: sticky;
+  position: fixed;
   top: 70px;
   left: 1800px;
 }

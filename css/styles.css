@@ -11455,3 +11455,9 @@ body .rect #time {
   }
 }
 
+#chat{
+  position: fixed;
+  top: 70px;
+  left: 1800px;
+}
+
