@@ -20,6 +20,20 @@ var players;
 var board, deck_index, button_index;
 var current_bettor_index, current_bet_amount, current_min_raise;
 
+var tiempoRestante = 30;
+var timepo60 = 0;
+var tiempoPartida = function(){};
+var Timer = function(){};
+var inactive = 0;
+var end = 0;
+var end_msg;
+var over_ending;
+var elapsed_time;
+var elapsed_milliseconds;
+
+
+
+
 function leave_pseudo_alert () {
   gui_write_modal_box("");
 }
@@ -155,7 +169,7 @@ function new_game_continues (req_no_opponents) {
   players = new Array(req_no_opponents + 1);
   var player_name = getLocalStorage("Nombre del jugador");
   if (!player_name) {
-    player_name = "Tu";
+    player_name = "Galanillo";
   }
   players[0] = new player(player_name, 0, "", "", "", 0, 0);
   my_players.sort(compRan);
@@ -747,7 +761,7 @@ function handle_end_of_round () {
              " onload='document.f.c.focus();'><table><tr><td>" +
              get_pot_size_html() +
              "</td></tr></table><br><font size=+2 color=" + hi_lite_color +
-             "><b>Winning: " +
+             "><b>Ganancias: " +
              winner_text + "</b></font>" + detail + "<br>";
   gui_write_game_response(html);
 
@@ -759,6 +773,7 @@ function handle_end_of_round () {
   var elapsed_milliseconds = ((new Date()) - START_DATE);
   var elapsed_time = makeTimeString(elapsed_milliseconds);
 
+
   if (human_loses == 1) {
     var ending = NUM_ROUNDS == 1 ? "1 apuesta." : NUM_ROUNDS + " apuestas.";
     my_pseudo_alert("Lo siento, perdiste " + players[0].name + ".\n\n" +
@@ -767,6 +782,7 @@ function handle_end_of_round () {
     num_playing = number_of_active_players();
     if (num_playing < 2) {
       var end_msg = "FIN DEL JUEGO!";
+      end = 1;
       var over_ending = NUM_ROUNDS == 1 ? "1 apuesta." : NUM_ROUNDS + " apuestas.";
       if (has_money(0)) {
         end_msg += "\n\nGANASTE " + players[0].name.toUpperCase() + "!!!";
@@ -787,6 +803,44 @@ function autoplay_new_round () {
     new_round();
   }
 }
+
+Timer = setInterval(function(){
+  if(tiempoRestante <= 0){
+    document.getElementById("contador").innerHTML = "El tiempo restante ha terminado. Serás penalizado por inactividad.";
+    clearInterval(Timer);
+    inactive = 1;
+  } else {
+    document.getElementById("contador").innerHTML = `Alerta Inactividad: <b>${tiempoRestante} segundos</b> restantes para apostar o serás expulsado`;
+    if (end == 1){
+      clearInterval(Timer);
+      document.getElementById("contador").innerHTML = "¡Genial! Has jugado durante toda la partida, recuerda que estar inactivo te penalizará.";
+      }
+  }
+  tiempoRestante -= 1;
+}, 1000);
+
+tiempoPartida = setInterval(function(){
+  if(timepo60 >= 900){
+    document.getElementById("inactividad").innerHTML = `<b>¡La partida ha terminado!</b>`;
+    clearInterval(tiempoPartida);
+    document.getElementById("inactividadRec").className = "";
+    end = 1;
+  } else {
+    document.getElementById("inactividad").innerHTML = `Duración de la partida: <b>${timepo60} segundos</b>`;
+    if (inactive == 1){
+      elapsed_milliseconds = ((new Date()) - START_DATE);
+      elapsed_time = makeTimeString(elapsed_milliseconds);
+      end_msg = "FIN DEL JUEGO!";
+      end_msg += "\n\nHas sido expulsado por inactividad.";
+      over_ending = NUM_ROUNDS == 1 ? "1 apuesta." : NUM_ROUNDS + " apuestas.";
+      my_pseudo_alert(end_msg + over_ending);
+      clearInterval(tiempoPartida);
+      document.getElementById("inactividadRec").className = "";
+      document.getElementById("inactividad").innerHTML = `<b>¡Has sido expulsado! La partida ha durado ${timepo60} segundos.</b>`;
+      }
+  }
+  timepo60 += 1;
+}, 1000);
 
 function ready_for_next_card () {
   var num_betting = get_num_betting();
@@ -896,6 +950,7 @@ function the_bet_function (player_index, bet_amount) {
 function human_call () {
   // Clear buttons
   gui_hide_fold_call_click();
+  tiempoRestante = 30;
   players[0].status = "CALL";
   current_bettor_index = get_next_player_position(0, 1);
   the_bet_function(0, current_bet_amount - players[0].subtotal_bet);
@@ -910,6 +965,7 @@ function handle_human_bet (bet_amount) {
   var is_ok_bet = the_bet_function(0, bet_amount);
   if (is_ok_bet) {
     players[0].status = "CALL";
+    tiempoRestante = 30;
     current_bettor_index = get_next_player_position(0, 1);
     write_player(0, 0, 0);
     main();
@@ -920,7 +976,9 @@ function handle_human_bet (bet_amount) {
 }
 
 function human_fold () {
+  tiempoRestante=30;
   players[0].status = "FOLD";
+  
   // Clear the buttons - not able to call
   gui_hide_fold_call_click();
   current_bettor_index = get_next_player_position(0, 1);
@@ -1064,7 +1122,7 @@ function get_pot_size () {
 }
 
 function get_pot_size_html () {
-  return "<font size=+4><b>BOTE TOTAl: " + get_pot_size() + "</b></font>";
+  return "<font size=+4><b>BOTE TOTAL: " + get_pot_size() + "</b></font>";
 }
 
 function clear_bets () {
@@ -1272,3 +1330,5 @@ function makeTimeString (milliseconds) {
 
   return (string);
 }
+
+
